@@ -1,0 +1,132 @@
+---
+sidebar_position: 3
+title: "4.2 LLM as Cognitive Planner"
+---
+
+# 4.2 LLM as Cognitive Planner
+
+This section covers the core Vision-Language-Action (VLA) loop, where Large Language Models transform human goals into structured, executable sequences of ROS 2 commands.
+
+## The VLA Loop
+
+The Vision-Language-Action loop represents the convergence of AI and robotics. It transforms natural language goals into executable robotic actions through several key stages:
+
+1. **Goal Understanding**: LLM parses human intent from natural language
+2. **Plan Generation**: Structured action sequences are created
+3. **Action Validation**: Plans are checked for feasibility
+4. **ROS Execution**: Commands are sent to the robotic system
+
+## Prompt Engineering for Structured Output
+
+To ensure reliable robotic action execution, LLMs must output structured data. Here's an example prompt template:
+
+```
+You are a cognitive planning system for a humanoid robot. Transform the human's natural language command into a structured sequence of actions.
+
+Rules:
+- Output only valid JSON
+- Use only these action types: navigate, detect, pick, place, speak, wait
+- Include target coordinates or object names where relevant
+- Ensure actions are executable in sequence
+
+Command: "Please get the red cup from the kitchen table and bring it to me."
+
+Output:
+[
+  {
+    "action": "navigate",
+    "target": "kitchen",
+    "description": "Move to the kitchen area"
+  },
+  {
+    "action": "detect",
+    "target": "red cup",
+    "description": "Locate the red cup on the table"
+  },
+  {
+    "action": "navigate",
+    "target": "table",
+    "description": "Move closer to the table"
+  },
+  {
+    "action": "pick",
+    "target": "red cup",
+    "description": "Grasp the red cup"
+  },
+  {
+    "action": "navigate",
+    "target": "user_location",
+    "description": "Return to the user"
+  },
+  {
+    "action": "place",
+    "target": "delivery_position",
+    "description": "Place the cup where the user can reach it"
+  }
+]
+```
+
+## Action Validation and Error Handling
+
+LLM-generated plans must be validated before execution:
+
+- **Syntax validation**: Ensure JSON structure is correct
+- **Action validation**: Verify all action types are supported
+- **Parameter validation**: Check that required parameters are present
+- **Safety validation**: Prevent dangerous or impossible actions
+
+## ROS 2 Integration
+
+The LLM planner should output action sequences that can be directly consumed by ROS 2 action servers:
+
+```python
+import json
+import rospy
+import actionlib
+from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from geometry_msgs.msg import Pose
+
+class LLMPlannerNode:
+    def __init__(self):
+        rospy.init_node('llm_planner_node')
+
+        # Subscribe to recognized speech
+        self.speech_sub = rospy.Subscriber('/recognized_speech', String, self.plan_callback)
+
+        # Action clients for navigation
+        self.move_base_client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
+
+    def plan_callback(self, speech_msg):
+        # Send command to LLM for planning
+        plan = self.generate_plan(speech_msg.data)
+
+        # Execute the plan
+        self.execute_plan(plan)
+
+    def generate_plan(self, command):
+        # Call LLM with prompt template to generate action sequence
+        # Implementation depends on your LLM service
+        pass
+
+    def execute_plan(self, plan):
+        for action in plan:
+            self.execute_single_action(action)
+
+    def execute_single_action(self, action):
+        action_type = action['action']
+
+        if action_type == 'navigate':
+            self.navigate_to_target(action['target'])
+        elif action_type == 'detect':
+            self.detect_object(action['target'])
+        # ... handle other action types
+```
+
+## Prompt Engineering Techniques
+
+For reliable output, use these prompt engineering techniques:
+
+- **Few-shot examples**: Provide several example input/output pairs
+- **Chain of thought**: Ask the LLM to reason step-by-step before outputting actions
+- **Output formatting**: Explicitly specify the required JSON structure
+- **Validation instructions**: Include rules to prevent invalid actions

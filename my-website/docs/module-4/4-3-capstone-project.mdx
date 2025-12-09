@@ -1,0 +1,132 @@
+---
+sidebar_position: 4
+title: "4.3 Capstone Project: The Autonomous Humanoid"
+---
+
+# 4.3 Capstone Project: The Autonomous Humanoid
+
+This section provides the instruction manual for the capstone project that integrates all modules into a complete autonomous humanoid system.
+
+## Project Overview
+
+The capstone project brings together all four modules into a unified autonomous humanoid system:
+
+- **Module 1 (ROS 2)**: Provides the communication and node architecture
+- **Module 2 (Simulation)**: Offers testing and validation environments
+- **Module 3 (Isaac/Nav2)**: Supplies navigation and path planning capabilities
+- **Module 4 (VLA)**: Implements voice recognition and cognitive planning
+
+## System Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Autonomous Humanoid System                   │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  Voice Command ──► Speech Recognition ──► LLM Cognitive Planner │
+│       │                  │                         │            │
+│       │                  └─────────────────────────┼────────────┘
+│       │                                            │            │
+│       └────────────────────────────────────────────┼────────────┘
+│                                                    │            │
+│  Vision Input ──► Perception ──► Object Detection │            │
+│                                                    │            │
+│                           ┌────────────────────────▼────────────┐
+│                           │     ROS 2 Action Execution         │
+│                           │                                    │
+│                           │ ┌─────────────────┐                │
+│                           │ │ Navigation      │◄───────────────┤
+│                           │ │ (Nav2/Isaac)    │                │
+│                           │ └─────────────────┘                │
+│                           │                                    │
+│                           │ ┌─────────────────┐                │
+│                           │ │ Manipulation    │◄───────────────┤
+│                           │ │ (Isaac/ROS)     │                │
+│                           │ └─────────────────┘                │
+│                           │                                    │
+│                           │ ┌─────────────────┐                │
+│                           │ │ Speech Output   │                │
+│                           │ │ (Text-to-Speech)│                │
+│                           │ └─────────────────┘                │
+│                           └─────────────────────────────────────┘
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## Voice Command Processing Flow
+
+The complete flow from voice command to action execution:
+
+1. **Voice Input**: User speaks a command to the humanoid robot
+2. **Speech Recognition**: Whisper API converts speech to text
+3. **Cognitive Planning**: LLM transforms the command into structured actions
+4. **Action Validation**: Plans are validated for safety and feasibility
+5. **ROS Execution**: Actions are executed through ROS 2 nodes
+6. **Feedback**: Robot provides visual/audible feedback to the user
+
+## Integration Points
+
+### Speech Recognition Integration
+The speech recognition node must publish to the `/recognized_speech` topic that the LLM planner subscribes to:
+
+```python
+# Speech Recognition Node
+speech_pub = rospy.Publisher('/recognized_speech', String, queue_size=10)
+
+# LLM Planner Node
+speech_sub = rospy.Subscriber('/recognized_speech', String, self.plan_callback)
+```
+
+### Navigation Integration
+The LLM planner must use Nav2/Isaac for navigation tasks:
+
+```python
+# LLM Planner sends navigation goals to Nav2
+def navigate_to_target(self, target):
+    goal = MoveBaseGoal()
+    goal.target_pose.header.frame_id = "map"
+    goal.target_pose.header.stamp = rospy.Time.now()
+    goal.target_pose.pose = self.get_pose_for_target(target)
+
+    self.move_base_client.send_goal(goal)
+    self.move_base_client.wait_for_result()
+```
+
+### Simulation Integration
+The system should work in both simulation (Gazebo/Unity) and real environments:
+
+- Use Gazebo for testing voice commands in a safe environment
+- Validate navigation plans in simulation before real-world execution
+- Implement sim-to-real transfer techniques from Module 3
+
+## Implementation Steps
+
+1. **Integrate Speech Recognition**: Connect Whisper-based speech recognition with ROS 2
+2. **Implement LLM Planning**: Deploy the cognitive planning system with structured output
+3. **Connect Navigation**: Link LLM actions to Nav2/Isaac navigation stack
+4. **Test in Simulation**: Validate the complete pipeline in simulated environment
+5. **Deploy to Real Robot**: Test on physical robot with safety measures
+
+## Testing and Validation
+
+### Unit Testing
+- Test speech recognition accuracy
+- Validate LLM output format and structure
+- Verify navigation goal execution
+
+### Integration Testing
+- End-to-end voice command to action execution
+- Error handling for invalid commands
+- Safety validation for dangerous actions
+
+### Performance Metrics
+- Task completion success rate: Target >80%
+- Speech recognition accuracy: Target >85%
+- Plan execution time: Within acceptable limits
+
+## Safety Considerations
+
+- Implement safety boundaries to prevent dangerous actions
+- Add human-in-the-loop validation for critical commands
+- Include emergency stop functionality
+- Validate all actions against safety constraints before execution

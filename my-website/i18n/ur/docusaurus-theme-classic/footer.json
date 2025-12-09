@@ -1,0 +1,42 @@
+{
+  "link.title.Docs": {
+    "message": "دستاویزات",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.Community": {
+    "message": "کمیونٹی",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.title.More": {
+    "message": "مزید",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.label.Tutorial": {
+    "message": "سیکھنے کا سلسلہ",
+    "description": "The label of footer link with label=Tutorial"
+  },
+  "link.label.Stack Overflow": {
+    "message": "سٹیک اوریفلو",
+    "description": "The label of footer link with label=Stack Overflow"
+  },
+  "link.label.Discord": {
+    "message": "ڈسکارڈ",
+    "description": "The label of footer link with label=Discord"
+  },
+  "link.label.X": {
+    "message": "ایکس",
+    "description": "The label of footer link with label=X"
+  },
+  "link.label.Blog": {
+    "message": "بلاگ",
+    "description": "The label of footer link with label=Blog"
+  },
+  "link.label.GitHub": {
+    "message": "گیتھب",
+    "description": "The label of footer link with label=GitHub"
+  },
+  "copyright": {
+    "message": "کاپی رائٹ © ${currentYear} فزیکل ای آئی اور ہیومنوائڈ روبوٹکس کتاب درس. ڈوکوسورس کے ساتھ تیار کیا گیا.",
+    "description": "The footer copyright"
+  }
+}

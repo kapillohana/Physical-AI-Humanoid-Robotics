@@ -5,7 +5,6 @@
 
 .heroBanner {
   padding: 4rem 0;
-  text-align: center;
   position: relative;
   overflow: hidden;
 }
@@ -16,8 +15,99 @@
   }
 }
 
-.buttons {
+/* Two-column layout for hero section */
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media screen and (max-width: 996px) {
+  .heroGrid {
+    grid-template-columns: 1fr; /* Stack on mobile */
+    text-align: center;
+  }
+}
+
+.heroImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.placeholderSvg {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 996px) {
+  .buttons {
+    justify-content: center;
+  }
+}
+
+/* Modules section */
+.modulesSection {
+  padding: 4rem 0;
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+@media screen and (max-width: 996px) {
+  .modulesSection {
+    padding: 2rem 0;
+  }
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 3rem !important;
+}
+
+/* Weekly breakdown section */
+.weeklySection {
+  padding: 4rem 0;
+}
+
+@media screen and (max-width: 996px) {
+  .weeklySection {
+    padding: 2rem 0;
+  }
+}
+
+.weekTitle {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .heroGrid {
+    gap: 1rem;
+  }
+
+  .imagePlaceholder {
+    max-width: 300px;
+  }
 }

@@ -32,7 +32,7 @@ const config: Config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'ur'],
   },
 
   presets: [
@@ -88,6 +88,14 @@ const config: Config = {
           label: 'Textbook',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'search',
+          position: 'right',
+        },
+        {
+          type: 'localeDropdown',
+          position: 'right',
+        },
         {
           href: 'https://github.com/your-username/physical-ai-book',
           label: 'GitHub',

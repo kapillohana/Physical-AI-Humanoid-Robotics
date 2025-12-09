@@ -36,30 +36,39 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Module 2: Simulation Environments (Gazebo)',
+      label: 'Module 2: The Digital Twin (Gazebo & Unity)',
       items: [
-        // Will be populated in future modules
+        'module-2/index',
+        'module-2/gazebo-fundamentals',
+        'module-2/urdf-sdf-simulation',
+        'module-2/sensor-simulation',
+        'module-2/unity-integration',
       ],
-      link: {type: 'doc', id: 'intro'}, // Placeholder link to avoid error
-      collapsed: true,
+      collapsed: false,
     },
     {
       type: 'category',
-      label: 'Module 3: Advanced Simulation (Isaac Sim)',
+      label: 'Module 3: The AI-Robot Brain (NVIDIA Isaac™)',
       items: [
-        // Will be populated in future modules
+        'module-3/index',
+        'module-3/isaac-sim-fundamentals',
+        'module-3/isaac-ros-hardware-accel',
+        'module-3/nav2-path-planning',
+        'module-3/sim-to-real-transfer',
       ],
-      link: {type: 'doc', id: 'intro'}, // Placeholder link to avoid error
-      collapsed: true,
+      collapsed: false,
     },
     {
       type: 'category',
-      label: 'Module 4: Vision-Language-Action Models',
+      label: 'Module 4: Vision-Language-Action (VLA)',
       items: [
-        // Will be populated in future modules
+        'module-4/index',
+        'module-4/4-1-voice-to-ros-action',
+        'module-4/4-2-llm-as-planner',
+        'module-4/4-3-capstone-project',
+        'module-4/4-4-ethics-and-the-future',
       ],
-      link: {type: 'doc', id: 'intro'}, // Placeholder link to avoid error
-      collapsed: true,
+      collapsed: false,
     },
   ],
 };

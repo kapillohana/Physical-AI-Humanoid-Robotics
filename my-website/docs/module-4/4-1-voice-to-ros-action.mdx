@@ -1,0 +1,82 @@
+---
+sidebar_position: 2
+title: "4.1 Voice-to-ROS Action Pipeline"
+---
+
+# 4.1 Voice-to-ROS Action Pipeline
+
+This section covers the complete speech recognition pipeline from microphone input to ROS 2 service calls, using OpenAI Whisper API or local models.
+
+## Speech Recognition Pipeline Overview
+
+The voice-to-ROS action pipeline consists of the following components:
+
+1. **Audio Input**: Microphone captures speech commands
+2. **Speech Recognition**: Whisper API/local model converts speech to text
+3. **ROS 2 Integration**: Text commands are published to ROS topics for further processing
+4. **Command Execution**: ROS nodes execute the recognized commands
+
+## Whisper API Integration
+
+OpenAI Whisper provides state-of-the-art speech recognition capabilities. You can use either the API service or deploy local models:
+
+```python
+import whisper
+import rospy
+from std_msgs.msg import String
+
+class SpeechRecognitionNode:
+    def __init__(self):
+        rospy.init_node('speech_recognition_node')
+
+        # Publisher for recognized speech
+        self.speech_pub = rospy.Publisher('/recognized_speech', String, queue_size=10)
+
+        # Initialize Whisper model
+        self.model = whisper.load_model("base")
+
+        # Subscribe to audio stream
+        self.audio_sub = rospy.Subscriber('/audio_stream', AudioData, self.process_audio)
+
+    def process_audio(self, audio_data):
+        # Convert audio data to numpy array
+        audio_array = self.audio_to_numpy(audio_data)
+
+        # Transcribe using Whisper
+        result = self.model.transcribe(audio_array)
+        recognized_text = result['text']
+
+        # Publish recognized text to ROS topic
+        self.speech_pub.publish(recognized_text)
+        rospy.loginfo(f"Recognized: {recognized_text}")
+
+    def audio_to_numpy(self, audio_data):
+        # Convert ROS AudioData to numpy array for Whisper
+        # Implementation depends on audio format
+        pass
+
+if __name__ == '__main__':
+    node = SpeechRecognitionNode()
+    rospy.spin()
+```
+
+## Local vs Cloud Processing
+
+When implementing speech recognition, consider these trade-offs:
+
+- **Cloud APIs**: Higher accuracy, no local computation, requires internet
+- **Local Models**: Privacy, offline capability, higher latency
+- **Hybrid**: Fallback to cloud when local models fail
+
+## Audio Preprocessing
+
+To improve recognition accuracy, consider preprocessing steps:
+
+- Noise reduction
+- Audio normalization
+- Voice activity detection
+- Echo cancellation
+
+## Integration with ROS 2
+
+The speech recognition node should publish to the `/recognized_speech` topic, which can be consumed by higher-level planning nodes. This creates a clean separation between perception and action planning.

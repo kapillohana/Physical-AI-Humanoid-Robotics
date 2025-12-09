@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p my-website)",
+      "Bash(npx create-docusaurus@latest . physical-ai-book classic)",
+      "Bash(npx create-docusaurus@latest physical-ai-book classic)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Initial commit of Physical AI & Humanoid Robotics textbook\n\n- Create Docusaurus project structure for the textbook\n- Configure for GitHub Pages deployment\n- Generate Module 1 content: The Robotic Nervous System (ROS 2)\n- Implement all required subtopics: Nodes, Topics, Services, rclpy, URDF\n- Set up proper sidebar navigation\n- Complete textbook foundation ready for deployment\n\nEOF\n)\")",
+      "Bash(.specify/scripts/bash/create-new-feature.sh --json --number 1 --short-name \"gazebo-unity-digital-twin\" \"Create the entire content specification and implementation plan for \"\"Module 2: The Digital Twin (Gazebo & Unity)\"\" of the \"\"Physical AI & Humanoid Robotics\"\" textbook. The Module 2 content must be generated and placed inside a new directory at **docs/module-2/** in the Docusaurus project. The focus is on **Physics Simulation and Environment Building**. The specification must cover the creation of Docusaurus documentation content for the following topics, broken into separate markdown files: 1. **Gazebo Fundamentals:** Setup, Simulating physics, gravity, and collisions. 2. **URDF and SDF in Simulation:** Loading the humanoid model (from Module 1 URDF) into Gazebo. 3. **Sensor Simulation:** Simulating and visualizing sensor data for LiDAR, Depth Cameras (RealSense), and IMUs. 4. **Integration with Unity:** High-fidelity rendering and setting up for human-robot interaction using the Unity ecosystem (e.g., Unity Robotics Hub or ROS-Unity bridge). Additionally, the agent must: * Define the learning outcomes for Module 2. * **Update the sidebars.ts file** to include a new navigation group for Module 2 with links to the generated files. * The final output should be the **spec document**, followed by the **implementation of the new module files** in the correct directory.\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
