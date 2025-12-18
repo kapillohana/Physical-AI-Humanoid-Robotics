@@ -5,3 +5,4 @@ python-dotenv
 langchain-text-splitters
 langchain-openai
 openai
+mangum
