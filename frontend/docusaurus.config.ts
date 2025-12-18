@@ -119,8 +119,8 @@ const config: Config = {
               to: '/docs/intro',
             },
             {
-              label: 'Documentation',
-              to: '/docs/category/modules',
+              label: 'Modules',
+              to: '/docs/module-1',
             },
           ],
         },
