@@ -178,6 +178,11 @@ def read_root():
 def health_check():
     return {"status": "healthy"}
 
+# For Vercel deployment, export the FastAPI app
+# The app will be served by Vercel's Python runtime
+# The if __name__ == "__main__" block is only for local development
+app_instance = app
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
