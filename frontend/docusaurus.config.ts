@@ -67,6 +67,8 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+  onBrokenLinks: 'warn',
+  onBrokenMarkdownLinks: 'warn',
 
   themeConfig: {
     // Replace with your project's social card
@@ -146,11 +148,11 @@ const config: Config = {
           items: [
             {
               label: 'Privacy Policy',
-              href: '/privacy',
+              href: '#',
             },
             {
               label: 'Terms',
-              href: '/terms',
+              href: '#',
             },
           ],
         },
