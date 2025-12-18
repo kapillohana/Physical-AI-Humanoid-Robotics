@@ -23,3 +23,10 @@ slorber:
     linkedin: sebastienlorber
     github: slorber
     newsletter: https://thisweekinreact.com
+
+admin:
+  name: Admin
+  title: Physical AI & Humanoid Robotics Team
+  image_url: https://github.com/ghost.png
+  socials:
+    github: your-username

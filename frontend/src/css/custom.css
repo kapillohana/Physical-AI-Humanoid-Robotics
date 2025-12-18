@@ -1,0 +1,429 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* Light mode color scheme - default theme */
+:root {
+  --ifm-color-primary: #008A70; /* Slightly less saturated cyan/teal for light mode */
+  --ifm-color-primary-dark: #00705A;
+  --ifm-color-primary-darker: #005745;
+  --ifm-color-primary-darkest: #003E30;
+  --ifm-color-primary-light: #00A48A;
+  --ifm-color-primary-lighter: #33B8A1;
+  --ifm-color-primary-lightest: #66CCB8;
+  --ifm-background-color: #FFFFFF; /* White background for light mode */
+  --ifm-background-surface-color: #F8F9FA; /* Light gray for cards */
+  --ifm-text-color: #1c1e21; /* Deep black/grey for light mode */
+  --ifm-text-color-secondary: #666666; /* Medium gray secondary text */
+  --ifm-border-color: #E0E0E0; /* Light border color */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-navbar-background-color: #FFFFFF; /* White for navbar */
+  --ifm-footer-background-color: #f0f0f0; /* Light grey for footer */
+  --ifm-font-family-base: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --ifm-line-height-base: 1.6; /* Improved line height for readability */
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #00FFC0; /* Vibrant Cyan/Teal */
+  --ifm-color-primary-dark: #00C896;
+  --ifm-color-primary-darker: #00B486;
+  --ifm-color-primary-darkest: #009970;
+  --ifm-color-primary-light: #33FFCC;
+  --ifm-color-primary-lighter: #66FFE0;
+  --ifm-color-primary-lightest: #99FFF0;
+  --ifm-background-color: #1b1b1d; /* Docusaurus dark shade */
+  --ifm-background-surface-color: #242526; /* Slightly lighter gray for cards */
+  --ifm-text-color: #FFFFFF; /* White text for high contrast */
+  --ifm-text-color-secondary: #E4E4E7; /* Light gray secondary text */
+  --ifm-border-color: #404040; /* Dark border color */
+  --ifm-navbar-background-color: #1b1b1d; /* Dark background for navbar */
+  --ifm-footer-background-color: #1b1b1d; /* Primary dark color for footer */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Light theme specific overrides */
+[data-theme='light'] {
+  --ifm-background-color: #ffffff;
+  --ifm-text-color: #1c1e21;
+  --ifm-footer-background-color: #f0f0f0;
+}
+
+/* Dark theme specific overrides */
+[data-theme='dark'] {
+  --ifm-background-color: #1b1b1d;
+  --ifm-text-color: #ffffff;
+  --ifm-footer-background-color: #1b1b1d;
+}
+
+/* Enhanced typography for improved readability */
+html {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Footer styling to match website colors */
+.footer {
+  background-color: var(--ifm-footer-background-color);
+  color: var(--ifm-text-color);
+  border-top: 1px solid var(--ifm-border-color);
+}
+
+[data-theme='light'] .footer {
+  background-color: #f8f9fa; /* Light gray to match website */
+  color: #1c1e21;
+}
+
+[data-theme='dark'] .footer {
+  background-color: #1b1b1d; /* Dark gray to match website */
+  color: #ffffff;
+}
+
+.footer__title {
+  color: var(--ifm-color-primary);
+}
+
+.footer__link-item {
+  color: var(--ifm-text-color);
+}
+
+.footer__link-item:hover {
+  color: var(--ifm-color-primary-light);
+}
+
+.footer__copyright {
+  color: var(--ifm-text-color-secondary);
+  border-top: 1px solid var(--ifm-border-color);
+  padding-top: 1rem;
+  margin-top: 2rem;
+}
+
+
+
+/* Weekly breakdown timeline styling */
+.weekly-breakdown-card {
+  background-color: var(--ifm-background-surface-color);
+  border-left: 4px solid var(--ifm-color-primary);
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  border-radius: 0 8px 8px 0;
+  transition: all 0.2s ease;
+}
+
+.weekly-breakdown-card:hover {
+  background-color: rgba(0, 255, 192, 0.05);
+  transform: translateX(4px);
+}
+
+/* Hardware requirements section styling */
+.hardware-card {
+  background-color: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-border-color);
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Button styling for dark theme */
+.button--primary {
+  background-color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: #000 !important;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.button--primary:hover {
+  background-color: var(--ifm-color-primary-light);
+  border-color: var(--ifm-color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 192, 0.3);
+}
+
+.button--secondary {
+  background-color: transparent;
+  border: 2px solid var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.button--secondary:hover {
+  background-color: rgba(0, 255, 192, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 192, 0.2);
+}
+
+/* Home page hero section styling with theme awareness */
+.hero {
+  background: linear-gradient(135deg, var(--ifm-background-color) 0%, var(--ifm-background-surface-color) 100%);
+}
+
+.hero__title {
+  color: var(--ifm-text-color);
+  font-weight: 700;
+}
+
+.hero__subtitle {
+  color: var(--ifm-text-color-secondary);
+}
+
+/* Enhanced theme-aware styling */
+.navbar {
+  background-color: var(--ifm-navbar-background-color) !important;
+}
+
+.footer {
+  background-color: var(--ifm-footer-background-color);
+}
+
+/* Card hover animations */
+.card {
+  transition: all 0.3s ease;
+  border: 1px solid var(--ifm-border-color);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Button hover animations */
+.button {
+  transition: all 0.2s ease;
+}
+
+/* Link hover effects */
+a {
+  transition: all 0.2s ease;
+}
+
+/* Theme-aware code blocks */
+.code-block {
+  background-color: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-border-color);
+}
+
+/* Section headers with theme awareness */
+.section-header {
+  color: var(--ifm-text-color);
+  border-bottom: 2px solid var(--ifm-color-primary);
+}
+
+/* Modern animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-delay-1 {
+  animation: fadeInUp 0.6s ease-out 0.2s forwards;
+}
+
+.fade-in-delay-2 {
+  animation: fadeInUp 0.6s ease-out 0.4s forwards;
+}
+
+.fade-in-delay-3 {
+  animation: fadeInUp 0.6s ease-out 0.6s forwards;
+}
+
+/* Pulse animation for interactive elements */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 192, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 255, 192, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 192, 0);
+  }
+}
+
+/* Slide in animations */
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale animation on hover */
+.scale-hover {
+  transition: transform 0.3s ease;
+}
+
+.scale-hover:hover {
+  transform: scale(1.05);
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 15px rgba(0, 255, 192, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow:hover {
+  box-shadow: 0 0 25px rgba(0, 255, 192, 0.6);
+}
+
+/* Sections styling with theme awareness */
+.features-section {
+  padding: 4rem 0;
+  background-color: var(--ifm-background-color);
+}
+
+/* Update the timeline to be theme-aware */
+.timeline::after {
+  background-color: var(--ifm-border-color);
+}
+
+.timeline-content {
+  background-color: var(--ifm-background-surface-color);
+  border-left: 3px solid var(--ifm-color-primary);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Theme-aware animations */
+[data-theme='dark'] .timeline-content {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+[data-theme='dark'] .card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='light'] .card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced button animations for both themes */
+.button--primary {
+  color: var(--ifm-background-color) !important;
+}
+
+[data-theme='dark'] .button--primary {
+  color: #000 !important;
+}
+
+[data-theme='light'] .button--primary {
+  color: #000 !important;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--ifm-text-color);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Timeline styling for course breakdown */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background-color: #333;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+  border-radius: 2px;
+}
+
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+}
+
+.timeline-item--right {
+  left: 50%;
+}
+
+.timeline-content {
+  padding: 20px;
+  background-color: var(--ifm-background-surface-color);
+  border-radius: 8px;
+  border-left: 3px solid var(--ifm-color-primary);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .timeline::after {
+    left: 31px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+    left: 0 !important;
+  }
+
+  .modules-grid {
+    grid-template-columns: 1fr;
+  }
+}

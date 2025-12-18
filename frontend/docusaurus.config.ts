@@ -18,7 +18,7 @@ const config: Config = {
   url: 'https://your-username.github.io', // Update this to your GitHub Pages URL
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/physical-ai-book/', // Update this to match your repo name
+  baseUrl: '/', // Update this to match your repo name
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -72,6 +72,7 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
+      defaultMode: 'dark',
       respectPrefersColorScheme: true,
     },
     navbar: {
@@ -107,11 +108,19 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Explore',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Blog',
+              to: '/blog',
+            },
+            {
+              label: 'Tutorials',
               to: '/docs/intro',
+            },
+            {
+              label: 'Documentation',
+              to: '/docs/category/modules',
             },
           ],
         },
@@ -119,34 +128,34 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'GitHub',
+              href: 'https://github.com/your-username/physical-ai-book',
             },
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://discord.gg/robotics',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'LinkedIn',
+              href: 'https://linkedin.com/company/robotics-community',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'Legal',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Privacy Policy',
+              href: '/privacy',
             },
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: 'Terms',
+              href: '/terms',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics Textbook. Built with Docusaurus.`,
+      copyright: `© 2025 Physical AI - All Rights Reserved`,
     },
     prism: {
       theme: prismThemes.github,

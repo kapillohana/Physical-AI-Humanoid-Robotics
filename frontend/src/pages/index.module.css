@@ -1,0 +1,289 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 600px; /* Ensure minimum height for video background */
+  background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%); /* Fallback background */
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+    min-height: 500px;
+  }
+}
+
+/* Hero content positioning above video */
+.heroContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px; /* Ensure content area has height */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.heroText {
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  max-width: 800px;
+  z-index: 3; /* Ensure text is above overlay */
+  position: relative;
+}
+
+.hero__title {
+  color: white;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Enhanced readability */
+}
+
+.hero__subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); /* Enhanced readability */
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Two-column layout - removed as we're using full-width video background */
+.heroGrid {
+  display: none; /* Hide old grid structure */
+}
+
+/* Keep the image container styles for potential fallback or future use */
+.imageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: floatAnimation 6s ease-in-out infinite, glowAnimation 3s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0px) rotate(0.5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-0.5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0.5deg);
+  }
+}
+
+@keyframes glowAnimation {
+  0% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    box-shadow: 0 15px 35px rgba(0, 255, 192, 0.4);
+  }
+}
+
+.heroImageContent {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease, filter 0.3s ease;
+  filter: brightness(0.95);
+}
+
+.imageContainer:hover .heroImageContent {
+  transform: scale(1.08) rotate(1deg);
+  filter: brightness(1.1) saturate(1.1);
+}
+
+.imageContainer:hover {
+  animation: none;
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 255, 192, 0.5);
+  transition: all 0.3s ease;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholderSvg {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Modules section */
+.modulesSection {
+  padding: 4rem 0;
+  background-color: var(--ifm-background-color);
+}
+
+@media screen and (max-width: 996px) {
+  .modulesSection {
+    padding: 2rem 0;
+  }
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 3rem !important;
+  color: var(--ifm-text-color);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+/* Enhanced module card styling */
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.module-card {
+  background-color: var(--ifm-background-surface-color);
+  border: 2px solid var(--ifm-border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--ifm-color-primary-light), var(--ifm-color-primary));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.module-card:hover::before {
+  transform: scaleX(1);
+}
+
+.module-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 4px var(--ifm-color-primary-lightest);
+  border-color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .module-card:hover {
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.3),
+    0 10px 10px -5px rgba(0, 0, 0, 0.1),
+    0 0 0 4px var(--ifm-color-primary-lightest);
+}
+
+.module-card h3 {
+  color: var(--ifm-text-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.module-card p {
+  color: var(--ifm-text-color-secondary);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.module-card .button {
+  align-self: flex-start;
+  margin-top: auto;
+  background: var(--ifm-color-primary);
+  color: var(--ifm-background-color) !important;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.module-card .button:hover {
+  background: var(--ifm-color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--ifm-color-primary-lightest);
+}
+
+/* Module icon styling */
+.moduleIcon {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* Weekly breakdown section */
+.weeklySection {
+  padding: 4rem 0;
+}
+
+@media screen and (max-width: 996px) {
+  .weeklySection {
+    padding: 2rem 0;
+  }
+}
+
+.weekTitle {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .heroGrid {
+    gap: 1rem;
+  }
+
+  .imagePlaceholder {
+    max-width: 300px;
+  }
+}
