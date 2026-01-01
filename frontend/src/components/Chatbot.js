@@ -109,7 +109,8 @@ const Chatbot = () => {
         selected_text: selectedText || null
       });
 
-      const response = await fetch('/api/chat', {
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://your-railway-app-name.up.railway.app';
+      const response = await fetch(`${BACKEND_URL}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -145,7 +146,7 @@ const Chatbot = () => {
 
       // Provide more specific error messages
       if (error.message.includes('fetch')) {
-        errorMessageText = 'Unable to connect to the backend server. Please make sure the FastAPI server is running on http://localhost:8000';
+        errorMessageText = 'Unable to connect to the backend server. Please check if the backend is properly deployed and the URL is configured correctly.';
       } else if (error.message.includes('404')) {
         errorMessageText = 'API endpoint not found. Please check if the backend server is properly configured.';
       } else if (error.message.includes('500')) {
